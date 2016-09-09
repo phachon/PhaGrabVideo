@@ -1,0 +1,22 @@
+site:                优酷 (Youku)
+title:               搞笑视频《西游记》之唐僧结婚  傻缺集锦 笑死人不偿命 恶搞配音 轻松时刻
+streams:             # Available quality and codecs
+    [ DEFAULT ] _________________________________
+    - format:        hd2
+      container:     flv
+      video-profile: 超清
+      size:          70.0 MiB (73386458 bytes)
+    # download-with: you-get --format=hd2 [URL]
+
+    - format:        mp4
+      container:     mp4
+      video-profile: 高清
+      size:          37.8 MiB (39673861 bytes)
+    # download-with: you-get --format=mp4 [URL]
+
+    - format:        flvhd
+      container:     flv
+      video-profile: 标清
+      size:          18.6 MiB (19516145 bytes)
+    # download-with: you-get --format=flvhd [URL]
+

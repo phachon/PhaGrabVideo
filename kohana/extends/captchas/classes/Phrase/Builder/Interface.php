@@ -1,0 +1,17 @@
+<?php
+/**
+ * Interface for the PhraseBuilder
+ *
+ * @author Gregwar <g.passault@gmail.com>
+ */
+interface Phrase_Builder_Interface {
+    /**
+     * Generates  random phrase of given length with given charset
+     */
+    public function build($length, $charset);
+
+    /**
+     * "Niceize" a code
+     */
+    public function niceize($str);
+}

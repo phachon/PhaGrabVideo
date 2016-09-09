@@ -1,0 +1,3 @@
+crontab 配置防止在执行周期完成前重复执行问题
+    */1 * * * *  flock -xn /tmp/upload.lock -c 'php task.php --task=upload' >> var/log/cron.log'
+    blog 地址：http://blog.csdn.net/phachon/article/details/52106409
