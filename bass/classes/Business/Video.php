@@ -18,7 +18,7 @@ class Business_Video extends Business {
 			'title' => '',
 			'url' => '',
 			'file_name' => '',
-			'video_id' => 0,
+			'upload_video_id' => 0,
 			'url_id' => 0,
 			'account_id' => 0,
 			'status' => Dao_Video::STATUS_UPLOAD_DEFAULT,

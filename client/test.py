@@ -21,14 +21,22 @@ class OutputPrint:
 		sys.stdout = self.__console__
 
 if __name__ == '__main__':
-
-	sys.argv = ['/usr/local/python3/bin/you-get', '--url', '--json', 'http://v.youku.com/v_show/id_XMTY2NzA5NjQwNA==.html?spm=0.0.m_231558.5~5~5~5~1~3~5~A.Mm2zY2']
-	output = OutputPrint()
-	sys.stdout = output
+	kwargs = {
+		# 'first': 1,
+		'url': 'http://my.tv.sohu.com/pl/9113873/85158891.shtml',
+	}
+	sys.argv = ['/usr/local/python3/bin/you-get', '--url', '--json', 'http://my.tv.sohu.com/pl/9113873/85158891.shtml']
+	#sys.kwargs = ['/usr/local/python3/bin/you-get', '--url', '--json', 'http://my.tv.sohu.com/pl/9113873/85158891.shtml']
+	# output = OutputPrint()
+	# sys.stdout = output
 	main()
-	result = output.buffer
-	output.flush()
-	output.reset()
-	data = json.loads(result)
-	print(data['title'])
+	main()
+	# sys.argv = []
+	# sys.argv = ['/usr/local/python3/bin/you-get', 'http://my.tv.sohu.com/pl/9113873/85158891.shtml']
+	# main()
+	# result = output.buffer
+	# output.flush()
+	# output.reset()
+	# data = json.loads(result)
+	# print(data['title'])
 	exit()

@@ -77,7 +77,7 @@ return array (
 
 		//url 来源
 		'url' => array (
-			'name' => 'URL来源',
+			'name' => 'URL管理',
 			'icon' => 'glyphicon glyphicon-share',
 			'submenu' => array (
 				array(
@@ -94,22 +94,22 @@ return array (
 		),
 
 		//视频管理
-		'video' => array (
-			'name' => '视频管理',
-			'icon' => 'glyphicon glyphicon-play-circle',
-			'submenu' => array (
-				array(
-					'name' => '视频列表',
-					'icon' => 'glyphicon glyphicon-list',
-					'href' => 'video/list',
-				),
+//		'video' => array (
+//			'name' => '视频管理',
+//			'icon' => 'glyphicon glyphicon-play-circle',
+//			'submenu' => array (
+//				array(
+//					'name' => '视频列表',
+//					'icon' => 'glyphicon glyphicon-list',
+//					'href' => 'video/list',
+//				),
 //				array(
 //					'name' => '我的视频',
 //					'icon' => 'glyphicon glyphicon-list',
 //					'href' => 'video/my',
 //				)
-			),
-		),
+//			),
+//		),
 
 		//日志管理
 		'log' => array (

@@ -55,6 +55,7 @@ class Business_Account extends Business {
 			throw new Business_Exception('用户名已存在');
 		}
 		$values['password'] = md5('123456');
+		$values['token'] = md5($values['name'].':'.$values['password']);
 
 		return Dao::factory('Account')->insert($values);
 	}

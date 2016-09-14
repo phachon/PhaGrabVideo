@@ -16,18 +16,16 @@
 </style>
 <body>
 <div class="container">
-	<h1 id="gome-video-grab-视频抓站系统">Gome+ Video Grab 视频抓站系统</h1>
+	<h1 id="gome-video-grab-视频抓站系统">PhaGrabVideo 多用户视频下载系统</h1>
 	<ul>
 		<li>You-get 工具</li>
-		<li>自动上传 GVS</li>
-		<li>日志查询</li>
+		<li>视频管理</li>
 	</ul>
 	<hr>
 	<h2 id="使用">使用</h2>
 	<ol>
 		<li>添加：进入后台后，点击 》URL管理 》添加URL,将需要抓取的视频填写到对应的表单，最好添加网站来源范围内的视频链接，否则可能会抓取失败。每次最多添加5个url。</li>
 		<li>下载：查看 URL 列表是否添加成功，后台定时任务会扫描到该条信息并下载，如果下载失败，可选择重新下载。可查看详细的下载日志。</li>
-		<li>上传：当下载完成后，点击 视频管理 》视频列表，找到对应的视频信息，等待上传，同样，上传失败后可选择重新上传。可查看详细的上传日志。</li>
 	</ol>
 	<h2 id="you-get-工具">you-get 工具</h2>
 	<p>下载采用 you-get 开源 python 脚本</p>
@@ -39,7 +37,7 @@
 		</li>
 	</ol>
 	<hr>
-	<p>Thanks.<br>© Panchao 2016.08</p>
+	<p>Thanks.<br>© phachon@163.com  2016</p>
 </div>
 </body>
 </html>

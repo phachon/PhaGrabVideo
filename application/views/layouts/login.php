@@ -34,9 +34,11 @@
 		</div>
 		<button type="submit" class="btn btn-primary btn-block btn-large" onclick="Login.ajaxSubmit(this.form)">登录</button>
 	</form>
-	<div style="margin-top: 80px">
-		<div class="text-center" style="font-size: 11px;color: #949CAF; font-family: Arial;">&copy; 2016 phachon@163.com
-		</div>
+	<div style="margin-top: 40px">
+		<p class="text-center" style="font-size: 13px;color: #3d61af; font-family: Arial;"><a href="<?php echo URL::site('author/register')?>">没有账号？》》点击注册</a></p>
+	</div>
+	<div style="margin-top: 60px">
+		<div class="text-center" style="font-size: 11px;color: #949CAF; font-family: Arial;">&copy; 2016 phachon@163.com</div>
 		<div class="text-center" style="font-size: 12px;color: #949CAF;">请使用Firefox, Chrome, IE9+浏览器达到更好效果</div>
 	</div>
 </div>

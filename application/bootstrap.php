@@ -149,6 +149,7 @@ Kohana::modules(array(
 	'common' => EXTPATH . 'common',
 	'logger' => EXTPATH . 'logger',
 	'author' => EXTPATH . 'author',
+	'captchas' => EXTPATH . 'captchas',
 	));
 Cookie::$salt = 'lasdlka';
 Session::$default = 'database';

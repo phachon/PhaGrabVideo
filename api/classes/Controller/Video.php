@@ -53,7 +53,7 @@ class Controller_Video extends Controller_Base {
 	/**
 	 * 创建视频记录
 	 */
-	public function create() {
+	public function action_create() {
 
 		$title = Arr::get($_POST, 'title', '');
 		$url = Arr::get($_POST, 'url', '');
@@ -87,7 +87,8 @@ class Controller_Video extends Controller_Base {
 				return $this->error('创建视频失败');
 			}
 		} catch (Exception $e) {
-			$this->error($e->getMessage());
+			return $this->error($e->getMessage());
 		}
+
 	}
 }

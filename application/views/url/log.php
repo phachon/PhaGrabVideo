@@ -36,7 +36,11 @@
               <label>
                 <?php
                 $data = json_decode($log->getExtra(), true);
-                var_dump($data);
+                if($data === null) {
+                  echo $log->getExtra();
+                }else {
+                  var_dump($data);
+                }
                 ?>
               </label>
             </div>

@@ -2,16 +2,18 @@
 下载器
 @author phachon@163.com
 """
+import os
 import sys
 import json
-import you_get
 import requests
 from grab_log import GrabLog
 from output_print import OutputPrint
-from you_get.__main__ import main as you_get_main
+# from you_get.__main__ import main
+from you_get.common import main
 
 
 class Downloader:
+
 	""" 根据 you-get 下载视频 """
 
 	def __init__(self, url):
@@ -26,8 +28,7 @@ class Downloader:
 		sys.stdout = output
 		error = ''
 		try:
-			you_get_main()
-			sys.argv = []
+			main()
 			result = output.buffer
 		except Exception as e:
 			error = e
@@ -37,54 +38,71 @@ class Downloader:
 		if error != '':
 			raise error
 
+		self.analysisInfo = result
 		data = json.loads(result)
 		self.title = data['title']
 
-	def _download(self):
+	def _download(self, fileName, fileDir):
 		""" 开始下载视频"""
 
-		sys.argv = ['/usr/local/python3/bin/you-get', self.url['url']]
-
+		#sys.argv = ['/usr/local/python3/bin/you-get', '--output-filename', '%s.flv' % fileName, '--output-dir', fileDir, self.url['url']]
+		sys.argv = ['/usr/local/python3/bin/you-get', '--debug', self.url['url']]
 		try:
-			you_get_main()
-			sys.argv = []
+			main()
 		except Exception as e:
 			raise e
 
 	def execute(self):
 
-		cmd = 'you-get --url --json ' + self.url['url']
-		# 写入日志：开始url
-		info = {'level': 0, 'url_id': self.urlId, 'message': '开始下载', 'extra': cmd}
+		cmd = 'you-get --url --json %s' % self.url['url']
+		info = {'level': GrabLog.level_info, 'url_id': self.urlId, 'message': '开始下载，准备分析视频...', 'extra': cmd}
 		# GrabLog(info).write()
 
 		try:
 			self._analysis()
 		except Exception as e:
 			print('视频分析失败: %s' % e)
-			info = {'level': 1, 'url_id': self.urlId, 'message': '视频分析失败', 'extra': e}
-			# GrabLog(info).write()
+			info = {'level': GrabLog.level_error, 'url_id': self.urlId, 'message': '视频分析失败', 'extra': e}
+			GrabLog(info).write()
+			return False
 
-		fileName = 'grab-video-' + range()
-		fileDir = 'videos/'
-
-		try:
-			self._download()
-		except Exception as e:
-			print('视频下载失败: %s' % e)
-			info = {'level': 1, 'url_id': self.urlId, 'message': '视频下载失败', 'extra': e}
-			# GrabLog(info).write()
-
-		info = {'level': 1, 'url_id': self.urlId, 'message': '视频下载成功', 'extra': cmd}
+		info = {'level': GrabLog.level_info, 'url_id': self.urlId, 'message': '视频分析完成, 准备下载...', 'extra': self.analysisInfo}
 		# GrabLog(info).write()
 
-		#创建视频
+		fileName = 'grab-video-%d' % self.urlId
+		fileDir = 'videos/'
+		if os.path.exists(fileDir) is False:
+			os.makedirs(fileDir)
+
+		try:
+			self._download(fileName, fileDir)
+		except Exception as e:
+			print('视频下载失败: %s' % e)
+			info = {'level': GrabLog.level_error, 'url_id': self.urlId, 'message': '视频下载失败', 'extra': e}
+			GrabLog(info).write()
+			return False
+
+		# 保存视频
 		video = {
 			'url_id': self.urlId,
 			'title': self.title,
-			'url' : self.url['url'],
-            'file_name' : fileName,
+			'url': self.url['url'],
+			'file_name': fileName,
 		}
+
+		info = {'level': GrabLog.level_info, 'url_id': self.urlId, 'message': '视频下载成功，准备保存...', 'extra': json.dumps(video)}
+		GrabLog(info).write()
+
+		result = requests.post('http://grab.githubs.com/api/video/create', data=video)
+		response = json.loads(result.text)
+		if response['code'] == 0:
+			print('保存视频信息失败')
+			info = {'level': GrabLog.level_error, 'url_id': self.urlId, 'message': '保存视频信息失败', 'extra': json.dumps(video)}
+			GrabLog(info).write()
+		else:
+			info = {'level': GrabLog.level_info, 'url_id': self.urlId, 'message': '视频保存成功，下载完成', 'extra': json.dumps(video)}
+			GrabLog(info).write()
+
 if __name__ == '__main__':
 	urlResults = requests.get('http://grab.githubs.com/api/url/getUrls?status=0')
 

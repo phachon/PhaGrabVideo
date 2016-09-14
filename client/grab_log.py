@@ -6,6 +6,13 @@ import json
 
 
 class GrabLog:
+	""" 抓取日志 """
+
+	# 日志级别
+	level_info = 0
+	level_warning = 1
+	level_error = 2
+	level_debug = 3
 
 	def __init__(self, info):
 		self.info = info
@@ -21,8 +28,6 @@ class GrabLog:
 			'upload_video_id': self.info.get('upload_video_id', 0)
 		}
 
-		print(values)
-		exit()
 		try:
 			result = requests.post("http://grab.githubs.com/api/log/grab", data=values)
 			response = json.loads(result.text)

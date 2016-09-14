@@ -25,15 +25,17 @@ CREATE TABLE `grab_account` (
   `name` char(100) NOT NULL DEFAULT '' COMMENT '用户名',
   `given_name` char(100) NOT NULL DEFAULT '' COMMENT '昵称',
   `password` char(32) NOT NULL DEFAULT '' COMMENT '密码',
-  `role_id` int(10) NOT NULL DEFAULT '0' COMMENT '角色 1 admin 2 普通',
+  `role_id` int(10) NOT NULL DEFAULT '0' COMMENT '角色id',
   `phone` char(20) NOT NULL DEFAULT '0' COMMENT '电话',
   `mobile` char(18) NOT NULL DEFAULT '0' COMMENT '手机',
   `email` char(100) NOT NULL DEFAULT '' COMMENT '邮箱',
+  `token` char(32) NOT NULL DEFAULT '' COMMENT 'Token(用户api验证)',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态 0 正常 -1 删除',
   `create_time` int(10) NOT NULL DEFAULT '0' COMMENT '创建时间',
   `update_time` int(10) NOT NULL DEFAULT '0' COMMENT '修改时间',
   PRIMARY KEY (`account_id`),
-  UNIQUE KEY `name` (`name`)
+  UNIQUE KEY `name` (`name`),
+  UNIQUE KEY `token` (`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT='用户信息表';
 
 INSERT INTO pha_grab_video.grab_account (name, given_name, password, role_id, phone, mobile, email, status, create_time, update_time) VALUES ('root', 'root', '96e79218965eb72c92a549dd5a330112', 1, '', '15201203612', 'panchao@gomeplus.com', 0, 1471512945, 1471593345);
@@ -50,7 +52,7 @@ CREATE TABLE `grab_role` (
   PRIMARY KEY (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT='用户角色表';
 
-INSERT INTO pha_grab_video.grab_role (name, privilege_menu, status, create_time, update_time) VALUES ('管理员', 'all', 0, 1471503644, 1471603059);
+INSERT INTO pha_grab_video.grab_role (name, privilege_menu, status, create_time, update_time) VALUES ('超级管理员', 'all', 0, 1471503644, 1471603059);
 
 #可抓取网站表
 DROP TABLE IF EXISTS `grab_website`;
@@ -59,7 +61,6 @@ CREATE TABLE `grab_website`(
   `name` char(150) NOT NULL DEFAULT '' COMMENT '名称',
   `url` char(200) NOT NULL DEFAULT '' COMMENT 'url',
   `issue_key` char(100) NOT NULL DEFAULT '' COMMENT 'key 值',
-  `delogo_position` VARCHAR(30) NOT NULL DEFAULT '1' COMMENT 'logo位置 1-左上 2-左下 3-左下 4-右下',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态 0 正常 -1 不可用',
   `create_time` int(10) NOT NULL DEFAULT '0' COMMENT '创建时间',
   `update_time` int(10) NOT NULL DEFAULT '0' COMMENT '修改时间',
@@ -73,14 +74,12 @@ CREATE TABLE `grab_video`(
   `title` char(200) NOT NULL DEFAULT '' COMMENT '标题',
   `url` char(200) NOT NULL DEFAULT '' COMMENT 'video_url',
   `file_name` char(200) NOT NULL DEFAULT '' COMMENT '文件名',
-  `upload_video_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '上传视频id',
   `url_id` int(10) NOT NULL DEFAULT '0' COMMENT '来源网站',
   `account_id` int(10) NOT NULL DEFAULT '0' COMMENT '用户id',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态 -1 删除 0 默认待上传 1上传成功 2 上传失败',
   `create_time` int(10) NOT NULL DEFAULT '0' COMMENT '创建时间',
   `update_time` int(10) NOT NULL DEFAULT '0' COMMENT '更新时间',
-  PRIMARY KEY (`grab_video_id`),
-  KEY `video_id` (`upload_video_id`)
+  PRIMARY KEY (`grab_video_id`)
 )ENGINE=InnoDB CHARSET=UTF8 COMMENT='抓取视频信息表';
 
 #抓取 url 地址表

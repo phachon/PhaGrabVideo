@@ -3,6 +3,7 @@ import sys
 
 class OutputPrint:
 	""" 将print输出内容保存到变量里 """
+
 	def __init__(self):
 		self.buffer = ''
 		self.__console__ = sys.stdout

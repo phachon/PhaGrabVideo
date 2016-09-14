@@ -62,4 +62,31 @@ class Controller_Author extends Controller {
 		Session::instance()->delete('author');
 		return Prompt::successView('退出成功', URL::site('author/index'));
 	}
+
+	/**
+	 * 注册
+	 */
+	public function action_register() {
+		$content = View::factory('layouts/register');
+		$this->response->body($content);
+	}
+
+	/**
+	 * 注册保存
+	 */
+	public function action_save() {
+
+		var_dump($_POST);
+		
+	}
+
+	/**
+	 * 验证码
+	 */
+	public function action_captcha() {
+		header('Content-type: image/jpeg');
+		$builder = new CaptchaBuilder();
+		$builder->build(109, 40)->output();
+		$_SESSION['captcha'] = $builder->getPhrase();
+	}
 }
