@@ -9,6 +9,8 @@ class Model_Role extends Model_Base {
 	const STATUS_DELETE = -1;
 	const STATUS_NORMAL = 0;
 
+	const DEFAULT_ROLE_ID = 2;
+
 	/**
 	 * 状态
 	 * @return string

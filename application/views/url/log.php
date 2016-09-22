@@ -10,8 +10,6 @@
           <th class="w8p">ID</th>
           <th class="w8p">Level</th>
           <th class="w40p">Message</th>
-          <th class="w9p">Grab_video_id</th>
-          <th class="w8p">Video_id</th>
           <th class="w10p">Time</th>
         </tr>
       </thead>
@@ -26,8 +24,6 @@
           <td>
             <a data-toggle="collapse" data-target="#<?php echo $log->getLogVideoId();?>"><?php echo $log->getMessage(); ?></a>
           </td>
-          <td class="center"><?php echo $log->getGrabVideoId(); ?></td>
-          <td class="center"><?php echo $log->getVideoId(); ?></td>
           <td class="center"><?php echo $log->getCreateTime('Y-m-d H:i'); ?></td>
         </tr>
         <tr class="collapse" id="<?php echo $log->getLogVideoId();?>">

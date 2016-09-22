@@ -73,4 +73,10 @@ class Author {
 	public static function mobile() {
 		return is_object(self::$_account) ? self::$_account->getMobile() : '';
 	}
+
+	public static function roleId() {
+		$roles = Business::factory('Role')->getRoleByRoleId(self::$_account->getAccountId());
+		$roleId = $roles->current()->getRoleId();
+		return $roleId;
+	}
 }

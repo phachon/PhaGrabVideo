@@ -9,13 +9,13 @@ var Register = {
 		var name = $('input[name="name"]').val();
 		var givenName = $('input[name="given_name"]').val();
 		var email = $('input[name="email"]').val();
-		var phone = $('input[name="phone"]').val();
+		var mobile = $('input[name="mobile"]').val();
 		var password = $('input[name="password"]').val();
 		var repass = $('input[name="repass"]').val();
 		var captcha = $('input[name="captcha"]').val();
 		if(name == '' || password == ''
 		|| givenName == '' || email == ''
-		|| phone == '' || password == ''
+		|| mobile == '' || password == ''
 		|| repass == '' || captcha == '') {
 			return false;
 		}
@@ -32,7 +32,7 @@ var Register = {
 			var text = messages.join("\n");
 			var timer = 2000;
 			swal({
-				'title' : '登陆成功',
+				'title' : '注册成功',
 				'text' : "<h4>"+text+"</h4>",
 				'html' : true,
 				'type' : 'success',
@@ -53,12 +53,12 @@ var Register = {
 				failed(result.messages, result.data);
 			}
 			if(result.code == 1) {
-				//success(result.messages, result.data);
+				success(result.messages, result.data);
 				if(result.redirect) {
 					location.href = result.redirect;
-					// setTimeout(function() {
-					// 	location.reload(true);
-					// }, 2000);
+					setTimeout(function() {
+						location.reload(true);
+					}, 2000);
 				}
 			}
 		}

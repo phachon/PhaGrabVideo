@@ -17,6 +17,7 @@ class Business_Account extends Business {
 		$fields = array (
 			'given_name' => '',
 			'name' => '',
+			'password' => '',
 			'email' => '',
 			'mobile' => '',
 			'phone' => '',
@@ -32,6 +33,7 @@ class Business_Account extends Business {
 		$email = Arr::get($values, 'email', '');
 		$mobile = Arr::get($values, 'mobile', '');
 		$roleId = Arr::get($values, 'role_id', 0);
+		$password = Arr::get($values, 'password', '');
 
 		$errors = [];
 		if(!$name) {
@@ -46,6 +48,9 @@ class Business_Account extends Business {
 		if(!$roleId) {
 			$errors[] = '没有选择角色';
 		}
+		if(!$password) {
+			$errors[] = '密码不能为空';
+		}
 		if($errors) {
 			throw new Business_Exception(implode(' ',$errors));
 		}
@@ -54,7 +59,7 @@ class Business_Account extends Business {
 		if($accounts->count() > 0) {
 			throw new Business_Exception('用户名已存在');
 		}
-		$values['password'] = md5('123456');
+		$values['password'] = md5($password);
 		$values['token'] = md5($values['name'].':'.$values['password']);
 
 		return Dao::factory('Account')->insert($values);
@@ -171,6 +176,14 @@ class Business_Account extends Business {
 	}
 
 	/**
+	 * 根据 token 来查找账号
+	 * @param $token
+	 */
+	public function getAccountByToken($token) {
+		return Dao::factory('Account')->getAccountByToken($token);
+	}
+
+	/**
 	 * 根据 account_id 来修改状态
 	 * @param integer $status
 	 * @param integer $accountId
@@ -198,9 +211,12 @@ class Business_Account extends Business {
 		if(!$accountId) {
 			return FALSE;
 		}
+		$account = Dao::factory('Account')->getAccountByAccountId($accountId);
+		$name = $account->current()->getName();
 
 		$values = [
 			'password' => md5($password),
+			'token' => md5($name . $password),
 			'update_time' => time()
 		];
 		return Dao::factory('Account')->updateByAccountId($values, $accountId);

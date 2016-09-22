@@ -21,7 +21,6 @@
 				<th class="center w15p">网站名</th>
 				<th class="center w25p">网站url</th>
 				<th class="center w20p">key</th>
-				<th class="center w10p">遮标位置</th>
 				<th class="center">状态</th>
 				<th class="center">操作</th>
 			</tr>
@@ -34,7 +33,6 @@
 						<td class="center"><?php echo $website->getName();?></td>
 						<td class="center"><?php echo $website->getUrl();?></td>
 						<td class="center"><?php echo $website->getIssueKey();?></td>
-						<td class="center"><?php echo $website->getDelogoRelPosition();?></td>
 						<td class="center"><?php echo $website->getStatus();?></td>
 						<td class="center">
 							<a name="edit" data-link="<?php echo URL::site('website/edit?website_id='. $website->getWebsiteId());?>"><i class="glyphicon glyphicon-pencil"> </i>修改</a>

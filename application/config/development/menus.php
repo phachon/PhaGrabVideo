@@ -26,11 +26,11 @@ return array (
 			'name' => '账号管理',
 			'icon' => 'glyphicon glyphicon-user',
 			'submenu' => array (
-				array(
-					'name' => '添加账号',
-					'icon' => 'glyphicon glyphicon-list',
-					'href' => 'account/add',
-				),
+//				array(
+//					'name' => '添加账号',
+//					'icon' => 'glyphicon glyphicon-list',
+//					'href' => 'account/add',
+//				),
 				array(
 					'name' => '账号列表',
 					'icon' => 'glyphicon glyphicon-list',
@@ -75,7 +75,7 @@ return array (
 			),
 		),
 
-		//url 来源
+		//url 管理
 		'url' => array (
 			'name' => 'URL管理',
 			'icon' => 'glyphicon glyphicon-share',
@@ -124,7 +124,7 @@ return array (
 				array(
 					'name' => '抓取日志',
 					'icon' => 'glyphicon glyphicon-list',
-					'href' => 'log_video/list',
+					'href' => 'log_download/list',
 				)
 			),
 		),

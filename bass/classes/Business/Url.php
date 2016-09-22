@@ -135,6 +135,19 @@ class Business_Url extends Business {
 	}
 
 	/**
+	 * 根据状态和账号id获取urls
+	 * @param integer $status
+	 * @param integer $accountId
+	 * @return array
+	 */
+	public function getUrlsByAccountIdAndStatus($accountId, $status) {
+		if(!is_numeric($status) || !is_numeric($accountId)) {
+			return [];
+		}
+		return Dao::factory('Url')->getUrlsByAccountIdAndStatus($accountId, $status);
+	}
+
+	/**
 	 * 根据 url_id 删除url
 	 * @param integer $urlId
 	 * @return integer

@@ -47,19 +47,19 @@
 		</div>
 		<div class="form-group">
 			<div class="input-group col-md-12">
-				<input class="form-control" type="text" name="phone" value="" placeholder="电话" required="required"/>
+				<input class="form-control" type="text" name="mobile" value="" placeholder="电话" required="required"/>
 				<div class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></div>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="input-group col-md-12">
-				<input class="form-control" type="text" name="password" value="" placeholder="密码" required="required"/>
+				<input class="form-control" type="password" name="password" value="" placeholder="密码" required="required"/>
 				<div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="input-group col-md-12">
-				<input class="form-control" type="text" name="repass" value="" placeholder="确认密码" required="required"/>
+				<input class="form-control" type="password" name="repass" value="" placeholder="确认密码" required="required"/>
 				<div class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></div>
 			</div>
 		</div>

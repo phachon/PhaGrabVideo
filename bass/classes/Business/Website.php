@@ -18,7 +18,6 @@ class Business_Website extends Business {
 			'name' => '',
 			'url' => '',
 			'issue_key' => '',
-			'delogo_position' => '',
 			'status' => Dao_Website::STATUS_NORMAL,
 			'create_time' => time(),
 			'update_time' => time(),
@@ -28,7 +27,6 @@ class Business_Website extends Business {
 		$values = $values + $fields;
 		$name = Arr::get($values, 'name', '');
 		$url = Arr::get($values, 'url', '');
-		$delogoPosition = Arr::get($values, 'delogo_position', '');
 
 		$errors = [];
 		if(!$name) {
@@ -36,9 +34,6 @@ class Business_Website extends Business {
 		}
 		if(!$url) {
 			$errors[] = 'url不能为空';
-		}
-		if(!$delogoPosition) {
-			$errors[] = '没有选择遮标位置';
 		}
 		if($errors) {
 			throw new Business_Exception(implode(' ',$errors));

@@ -48,9 +48,6 @@ class Controller_Url extends Controller_Template {
 				return $this->error('添加URL失败: ' . $e->getMessage());
 			}
 			$urlIds[] = $result[0];
-			Log_Video::info()->urlId($result[0])
-				->message('添加url成功')
-				->write();
 		}
 		Logs::instance()->write('添加URL '.implode(',',$urlIds).' 成功');
 		return $this->success('添加URL成功', URL::site('url/add'));
@@ -73,6 +70,11 @@ class Controller_Url extends Controller_Template {
 		}
 		if($url != '') {
 			$keywords['url'] = $url;
+		}
+
+		//不是超级管理员，只返回自己添加的
+		if(Author::roleId() != 1) {
+			$keywords['account_id'] = Author::accountId();
 		}
 		if($keywords) {
 			$total = Business::factory('Url')->countUrlsByKeywords($keywords);
@@ -132,9 +134,6 @@ class Controller_Url extends Controller_Template {
 		}
 
 		Logs::instance()->write('重新抓取URL '.$urlId.' 成功');
-		Log_Video::info()->urlId($urlId)
-			->message('重新抓取url')
-			->write();
 		return $this->success('重新抓取URL成功', URL::site('url/list'));
 	}
 
@@ -144,7 +143,7 @@ class Controller_Url extends Controller_Template {
 	public function action_log() {
 		$urlId = Arr::get($_GET, 'url_id', '');
 
-		$logs = Business::factory('Log_Video')->getLogsByUrlId($urlId);
+		$logs = Business::factory('Log_Download')->getLogsByUrlId($urlId);
 
 		$this->_default->content = View::factory('url/log')
 			->set('logs', $logs);

@@ -27,13 +27,13 @@ return array(
 	),
 
 	/**
-	 * 抓取视频日志（数据库）
+	 * 下载日志（数据库）
 	 */
-	'video_log' => array(
+	'grab_log_download' => array(
 		'type' => 'database',
 		'parameters' => array (
 			'group' 	 => 'grab',
-			'table'      => 'log_video',
+			'table'      => 'grab_log_download',
 			'slice'		 => '',
 		),
 		'columns' => array(
@@ -41,8 +41,6 @@ return array(
 			'level' => 0,
 			'extra' => '',
 			'url_id' => 0,
-			'grab_video_id' => 0,
-			'upload_video_id' => 0,
 			'create_time' => time(),
 		),
 	),

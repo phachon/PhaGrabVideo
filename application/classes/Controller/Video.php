@@ -53,10 +53,6 @@ class Controller_Video extends Controller_Template {
 		}
 
 		Logs::instance()->write('重新上传视频成功 '.$grabVideoId.' 成功');
-		Log_Video::info()
-			->urlId($grabVideos->current()->getUrlId())->grabVideoId($grabVideoId)
-			->message('重新上传视频')
-			->write();
 		return $this->success('重新上传视频成功', URL::site('video/list'));
 	}
 

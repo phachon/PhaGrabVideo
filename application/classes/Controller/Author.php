@@ -76,8 +76,36 @@ class Controller_Author extends Controller {
 	 */
 	public function action_save() {
 
-		var_dump($_POST);
-		
+		$name = Arr::get($_POST, 'name', '');
+		$givenName = Arr::get($_POST, 'given_name', '');
+		$email = Arr::get($_POST, 'email', '');
+		$mobile = Arr::get($_POST, 'mobile', '');
+		$password = Arr::get($_POST, 'password', '');
+		$repass = Arr::get($_POST, 'repass', '');
+		$captcha = Arr::get($_POST, 'captcha', '');
+
+		if($_SESSION['captcha'] != $captcha) {
+			return Prompt::jsonError('验证码输入错误!');
+		}
+		if($password !== $repass) {
+			return Prompt::jsonError('两次密码输入不一致!');
+		}
+		$values = [
+			'name' => $name,
+			'given_name' => $givenName,
+			'email' => $email,
+			'mobile' => $mobile,
+			'password' => $password,
+			'role_id' => Model_Role::DEFAULT_ROLE_ID,
+		];
+
+		try {
+			$result = Business::factory('Account')->create($values);
+		} catch (Exception $e) {
+			return Prompt::jsonError($e);
+		}
+
+		return Prompt::jsonSuccess('恭喜你注册成功,请重新登录', URL::site('author/index'));
 	}
 
 	/**

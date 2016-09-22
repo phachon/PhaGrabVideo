@@ -19,22 +19,6 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-2 control-label"><span class="text-danger"> * </span>logo位置</label>
-				<?php $delogoPosition = isset($website) ? explode(',', $website->getDelogoPosition()) : [];?>
-				<label class="checkbox-inline">
-					<input type="checkbox" name="delogo_position[]" value="1" <?php echo (!$delogoPosition) || ($delogoPosition && in_array('1', $delogoPosition)) ? 'checked' : '';?> >左上
-				</label>
-				<label class="checkbox-inline">
-					<input type="checkbox" name="delogo_position[]" value="2" <?php echo $delogoPosition && in_array('2', $delogoPosition) ? 'checked' : '';?> >右上
-				</label>
-				<label class="checkbox-inline">
-					<input type="checkbox" name="delogo_position[]" value="3" <?php echo $delogoPosition && in_array('3', $delogoPosition) ? 'checked' : '';?> >左下
-				</label>
-				<label class="checkbox-inline">
-					<input type="checkbox" name="delogo_position[]" value="4" <?php echo $delogoPosition && in_array('4', $delogoPosition) ? 'checked' : '';?> >右下
-				</label>
-			</div>
-			<div class="form-group">
 				<label class="col-md-2 control-label"><span class="text-danger"></span>key值</label>
 				<div class="col-md-6">
 					<input class="form-control" type="text" name="issue_key" value="<?php echo isset($website) ? $website->getIssueKey() : '';?>" placeholder="key值"/>

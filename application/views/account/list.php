@@ -21,13 +21,14 @@
 		<table class="table table-bordered table-hover">
 			<thead>
 			<tr>
-				<th class="center w8p">ID</th>
+				<th class="center w5p">ID</th>
 				<th class="center w15p">用户名</th>
-				<th class="center w15p">姓名</th>
-				<th class="center w25p">邮箱</th>
-				<th class="center w15p">角色</th>
-				<th class="center">状态</th>
-				<th class="center">操作</th>
+				<th class="center w10p">姓名</th>
+				<th class="center w16p">邮箱</th>
+				<th class="center w16p">Token</th>
+				<th class="center w10p">角色</th>
+				<th class="center w8p">状态</th>
+				<th class="center w10p">操作</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -38,6 +39,7 @@
 						<td class="center"><?php echo $account->getName();?></td>
 						<td class="center"><?php echo $account->getGivenName();?></td>
 						<td class="center"><?php echo $account->getEmail();?></td>
+						<td class="center"><?php echo $account->getToken();?></td>
 						<td class="center"><?php echo $account->getRole();?></td>
 						<td class="center"><?php echo $account->getStatus();?></td>
 						<td class="center">

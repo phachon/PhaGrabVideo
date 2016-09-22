@@ -117,6 +117,20 @@ class Dao_Account extends Dao {
 	}
 
 	/**
+	 * 根据 token 来查找账号
+	 * @param string $token
+	 * @return array
+	 */
+	public function getAccountByToken($token) {
+		return DB::select('*')
+			->from($this->_tableName)
+			->where('token', '=', $token)
+			->and_where('status', '=', self::STATUS_NORMAL)
+			->as_object('Model_Account')
+			->execute($this->_db);
+	}
+
+	/**
 	 * 根据 name 来查找账号
 	 * @param integer $name
 	 * @return array

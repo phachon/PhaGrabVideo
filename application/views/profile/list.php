@@ -37,6 +37,7 @@
 	</div>
 	<div class="panel-footer">
 		<div class="row">
+			<h4 class="text-info">你的Token：<span class="label label-success"><?php echo $account->getToken();?></span></h4>
 		</div>
 	</div>
 </div>

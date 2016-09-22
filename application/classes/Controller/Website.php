@@ -24,13 +24,11 @@ class Controller_Website extends Controller_Template {
 		$name = Arr::get($_POST, 'name', '');
 		$url = Arr::get($_POST, 'url', '');
 		$issueKey = Arr::get($_POST, 'issue_key', '');
-		$delogoPosition = Arr::get($_POST, 'delogo_position', ['1']);
 
 		$values = [
 			'name' => $name,
 			'url' => $url,
 			'issue_key' => $issueKey,
-			'delogo_position' => implode(',', $delogoPosition),
 		];
 
 		try {
@@ -90,13 +88,11 @@ class Controller_Website extends Controller_Template {
 		$name = Arr::get($_POST, 'name', '');
 		$url = Arr::get($_POST, 'url', '');
 		$issueKey = Arr::get($_POST, 'issue_key', '');
-		$delogoPosition = Arr::get($_POST, 'delogo_position', ['1']);
 
 		$values = [
 			'name' => $name,
 			'url' => $url,
 			'issue_key' => $issueKey,
-			'delogo_position' => implode(',', $delogoPosition),
 		];
 
 		try {

@@ -12,14 +12,12 @@
             <select class="form-control" name="search_type">
               <option value="">全部</option>
               <option value="url_id" <?php echo isset($_GET['search_type']) && ($_GET['search_type'] == 'url_id') ? 'selected' : '';?>>url_id </option>
-              <option value="grab_video_id" <?php echo isset($_GET['search_type']) && ($_GET['search_type'] == 'grab_video_id') ? 'selected' : '';?>>grab_video_id</option>
-              <option value="video_id" <?php echo isset($_GET['search_type']) && ($_GET['search_type'] == 'video_id') ? 'selected' : '';?>>video_id</option>
             </select>
           </div>
         </div>
         <div class="col-md-3">
           <div class="input-group">
-            <input class="form-control" name="keyword" type="text" value="<?php echo isset($_GET['keyword']) ? $_GET['keyword'] : ''; ?>" placeholder="url_id / video_id / grab_video_id"/>
+            <input class="form-control" name="keyword" type="text" value="<?php echo isset($_GET['keyword']) ? $_GET['keyword'] : ''; ?>" placeholder="url_id"/>
             <span class="input-group-btn">
               <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
             </span>
@@ -36,8 +34,6 @@
           <th class="w10p">Level</th>
           <th class="w40p">Message</th>
           <th class="w8p">Url_id</th>
-          <th class="w8p">Grab_video_id</th>
-          <th class="w8p">Video_id</th>
           <th class="w10p">Time</th>
         </tr>
       </thead>
@@ -53,8 +49,6 @@
             <a data-toggle="collapse" data-target="#<?php echo $log->getLogVideoId();?>"><?php echo $log->getMessage(); ?></a>
           </td>
           <td class="center"><?php echo $log->getUrlId(); ?></td>
-          <td class="center"><?php echo $log->getGrabVideoId(); ?></td>
-          <td class="center"><?php echo $log->getVideoId(); ?></td>
           <td class="center"><?php echo $log->getCreateTime('Y-m-d H:i'); ?></td>
         </tr>
         <tr class="collapse" id="<?php echo $log->getLogVideoId();?>">

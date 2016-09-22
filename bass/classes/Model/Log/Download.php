@@ -1,10 +1,10 @@
 <?php
 /**
- * log model
+ * 视频下载 log model
  * @author: phachon@163.com
  * Time: 16:12
  */
-class Model_Log_Video extends Model_Base {
+class Model_Log_Download extends Model_Base {
 
 	const LEVEL_INFO = 0;       //提示
 	const LEVEL_WARNING = 1;    //警告

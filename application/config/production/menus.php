@@ -26,11 +26,11 @@ return array (
 			'name' => '账号管理',
 			'icon' => 'glyphicon glyphicon-user',
 			'submenu' => array (
-				array(
-					'name' => '添加账号',
-					'icon' => 'glyphicon glyphicon-list',
-					'href' => 'account/add',
-				),
+//				array(
+//					'name' => '添加账号',
+//					'icon' => 'glyphicon glyphicon-list',
+//					'href' => 'account/add',
+//				),
 				array(
 					'name' => '账号列表',
 					'icon' => 'glyphicon glyphicon-list',

@@ -9,14 +9,12 @@ class Controller_Log extends Controller_Base {
 	/**
 	 * 写入抓取日志
 	 */
-	public function action_grab() {
+	public function action_download() {
 
 		$level = Arr::get($_POST, 'level', 0);
 		$message = Arr::get($_POST, 'message', '');
 		$extra = Arr::get($_POST, 'extra', '');
 		$urlId = Arr::get($_POST, 'url_id', 0);
-		$grabVideoId = Arr::get($_POST, 'grab_video_id', 0);
-		$uploadVideoId = Arr::get($_POST, 'upload_video_id', 0);
 
 		if(!is_numeric($level)) {
 			return $this->error('level must integer');
@@ -32,14 +30,15 @@ class Controller_Log extends Controller_Base {
 		if($urls->count() == 0) {
 			return $this->error('url_id not exists');
 		}
-
+		if($urls->current()->getAccountId() != $this->_accountId) {
+			return $this->error('You do not have permission to operate this url');
+		}
+		
 		try {
-			Log_Video::instance($level)
+			Log_Download::instance($level)
 				->message($message)
 				->extra($extra)
 				->urlId($urlId)
-				->grabVideoId($grabVideoId)
-				->uploadVideoId($uploadVideoId)
 				->write();
 		} catch (Exception $e) {
 			return $this->error($e->getMessage());

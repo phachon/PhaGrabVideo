@@ -1,10 +1,10 @@
 <?php
 /**
- * 抓取视频日志 business
+ * 视频下载日志 business
  * @author: phachon@163.com
  * Time: 216-08-18 11:27
  */
-class Business_Log_Video extends Business {
+class Business_Log_Download extends Business {
 
 	/**
 	 * 根据关键字获取日志数量
@@ -12,7 +12,7 @@ class Business_Log_Video extends Business {
 	 * @return array
 	 */
 	public function countLogsByKeywords($keywords) {
-		return Dao::factory('Log_Video')->countLogsByKeywords($keywords);
+		return Dao::factory('Log_Download')->countLogsByKeywords($keywords);
 	}
 
 	/**
@@ -23,7 +23,7 @@ class Business_Log_Video extends Business {
 	 * @return array
 	 */
 	public function getLogsByKeywordsAndLimit($keywords, $offset, $number) {
-		return Dao::factory('Log_Video')->getLogsByKeywordsAndLimit($keywords, $offset, $number);
+		return Dao::factory('Log_Download')->getLogsByKeywordsAndLimit($keywords, $offset, $number);
 	}
 
 	/**
@@ -31,7 +31,7 @@ class Business_Log_Video extends Business {
 	 * @return array
 	 */
 	public function countLogs() {
-		return Dao::factory('Log_Video')->countLogs();
+		return Dao::factory('Log_Download')->countLogs();
 	}
 
 	/**
@@ -41,14 +41,14 @@ class Business_Log_Video extends Business {
 	 * @return array
 	 */
 	public function getLogsByLimit($offset, $number) {
-		return Dao::factory('Log_Video')->getLogsByLimit($offset, $number);
+		return Dao::factory('Log_Download')->getLogsByLimit($offset, $number);
 	}
 
 	/**
 	 * 获取所有的日志
 	 */
 	public function getLogs() {
-		return Dao::factory('Log_Video')->getLogs();
+		return Dao::factory('Log_Download')->getLogs();
 	}
 
 	/**
@@ -57,7 +57,7 @@ class Business_Log_Video extends Business {
 	 * @return array
 	 */
 	public function getLogsByUrlId($urlId) {
-		return Dao::factory('Log_Video')->getLogsByUrlId($urlId);
+		return Dao::factory('Log_Download')->getLogsByUrlId($urlId);
 	}
 
 	/**
@@ -66,7 +66,7 @@ class Business_Log_Video extends Business {
 	 * @return array
 	 */
 	public function getLogsByGrabVideoId($grabVideoId) {
-		return Dao::factory('Log_Video')->getLogsByGrabVideoId($grabVideoId);
+		return Dao::factory('Log_Download')->getLogsByGrabVideoId($grabVideoId);
 	}
 
 }

@@ -42,6 +42,9 @@ class Dao_Url extends Dao {
 		if(isset($keywords['website_id']) && $keywords['website_id']) {
 			$select->and_where('website_id', '=', $keywords['website_id']);
 		}
+		if(isset($keywords['account_id']) && $keywords['account_id']) {
+			$select->and_where('account_id', '=', $keywords['account_id']);
+		}
 		if(isset($keywords['status']) && $keywords['status'] != self::STATUS_DELETE) {
 			$select->and_where('status', '=', $keywords['status']);
 		}
@@ -67,6 +70,9 @@ class Dao_Url extends Dao {
 			->order_by($this->_primaryKey, 'DESC');
 		if(isset($keywords['website_id']) && $keywords['website_id']) {
 			$select->and_where('website_id', '=', $keywords['website_id']);
+		}
+		if(isset($keywords['account_id']) && $keywords['account_id']) {
+			$select->and_where('account_id', '=', $keywords['account_id']);
 		}
 		if(isset($keywords['status']) && $keywords['status'] != self::STATUS_DELETE) {
 			$select->and_where('status', '=', $keywords['status']);
@@ -153,6 +159,21 @@ class Dao_Url extends Dao {
 		return DB::select('*')
 			->from($this->_tableName)
 			->where('status', '=', $status)
+			->as_object('Model_Url')
+			->execute();
+	}
+
+	/**
+	 * 根据状态和账号Id获取所有的URL
+	 * @param integer $status
+	 * @param integer $accountId
+	 * @return array
+	 */
+	public function getUrlsByAccountIdAndStatus($accountId, $status) {
+		return DB::select('*')
+			->from($this->_tableName)
+			->where('status', '=', $status)
+			->where('account_id', '=', $accountId)
 			->as_object('Model_Url')
 			->execute();
 	}

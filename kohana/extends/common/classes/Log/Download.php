@@ -1,10 +1,10 @@
 <?php
 /**
- * 抓取视频日志类
+ * 下载日志类
  * @author: phachon@163.com
  * Time: 14:30
  */
-class Log_Video {
+class Log_Download {
 
 	const LEVEL_INFO = 0;       //提示
 	const LEVEL_WARNING = 1;    //警告
@@ -42,12 +42,6 @@ class Log_Video {
 	protected $_extra = '';
 
 	/**
-	 * upload_video_id
-	 * @var int
-	 */
-	protected $_uploadVideoId = 0;
-
-	/**
 	 * instance
 	 * @var null
 	 */
@@ -55,7 +49,7 @@ class Log_Video {
 
 	/**
 	 * @param integer $level
-	 * @return Log_Video|null
+	 * @return Log_Grab|null
 	 */
 	public static function instance($level) {
 
@@ -136,16 +130,6 @@ class Log_Video {
 		return $this;
 	}
 
-	/**
-	 * video_id
-	 * @param integer $uploadVideoId
-	 * @return object
-	 */
-	public function uploadVideoId($uploadVideoId) {
-		$this->_uploadVideoId = $uploadVideoId;
-		return $this;
-	}
-
 	public function write() {
 		$data = array (
 			'message' => $this->_message,
@@ -153,11 +137,10 @@ class Log_Video {
 			'extra' => $this->_extra,
 			'url_id' => $this->_urlId,
 			'grab_video_id' => $this->_grabVideoId,
-			'upload_video_id' => $this->_uploadVideoId,
 		);
 
 		try {
-			Logger::factory('video_log')->write($data)->execute();
+			Logger::factory('grab_log_download')->write($data)->execute();
 		} catch (Exception $e) {
 			throw new Exception($e->getMessage());
 		}

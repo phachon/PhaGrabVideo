@@ -45,7 +45,7 @@ DROP TABLE IF EXISTS `grab_role`;
 CREATE TABLE `grab_role` (
   `role_id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'role id',
   `name` char(100) NOT NULL DEFAULT '' COMMENT '角色名',
-  `privilege_menu` char(200) NOT NULL DEFAULT 'profile' COMMENT '角色权限菜单 profile,url,video',
+  `privilege_menu` char(200) NOT NULL DEFAULT 'profile,url' COMMENT '角色权限菜单 profile,url,video',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态 0 正常 -1 删除',
   `create_time` int(10) NOT NULL DEFAULT '0' COMMENT '创建时间',
   `update_time` int(10) NOT NULL DEFAULT '0' COMMENT '修改时间',
@@ -53,6 +53,7 @@ CREATE TABLE `grab_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT='用户角色表';
 
 INSERT INTO pha_grab_video.grab_role (name, privilege_menu, status, create_time, update_time) VALUES ('超级管理员', 'all', 0, 1471503644, 1471603059);
+INSERT INTO pha_grab_video.grab_role (name, privilege_menu, status, create_time, update_time) VALUES ('普通账号', 'profile,url', 0, 1471503644, 1471603059);
 
 #可抓取网站表
 DROP TABLE IF EXISTS `grab_website`;
@@ -95,7 +96,7 @@ CREATE TABLE `grab_url`(
   PRIMARY KEY (`url_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT='抓取url表';
 
-#日志信息表
+#行为日志信息表
 DROP TABLE IF EXISTS `grab_log`;
 CREATE TABLE `grab_log`(
   `log_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'log id',
@@ -109,18 +110,15 @@ CREATE TABLE `grab_log`(
 	PRIMARY KEY (`log_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT='日志信息表';
 
-#抓取视频日志表
-DROP TABLE IF EXISTS `grab_log_video`;
-CREATE TABLE `grab_log_video` (
-  `log_video_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'log id',
+#下载日志日志表
+DROP TABLE IF EXISTS `grab_log_download`;
+CREATE TABLE `grab_log_download` (
+  `log_download_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'log id',
   `message` varchar(255) NOT NULL DEFAULT '' COMMENT '信息',
   `level` tinyint(1) NOT NULL DEFAULT '0' COMMENT '级别，0-info提示描述性信息，1-warn警告性质的信息，2-error错误信息，3-debug调试信息',
   `extra` text NOT NULL  COMMENT '具体描述信息GET,POST,throw',
   `url_id` bigint(20) NOT NULL DEFAULT 0 COMMENT 'url_id',
-  `grab_video_id` bigint(20) NOT NULL DEFAULT 0 COMMENT 'grab_video_id',
-  `video_id` bigint(20) NOT NULL DEFAULT 0 COMMENT 'video_id',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-  PRIMARY KEY (`log_video_id`),
-  KEY `url_id` (`url_id`),
-  KEY `grab_video_id` (`grab_video_id`)
+  PRIMARY KEY (`log_download_id`),
+  KEY `url_id` (`url_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT='抓取视频日志表';

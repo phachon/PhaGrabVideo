@@ -34,7 +34,9 @@
 						<td class="center"><?php echo $role->getCreateTime('Y-m-d H:i');?></td>
 						<td class="center">
 							<a name="edit" data-link="<?php echo URL::site('role/edit?role_id='. $role->getRoleId());?>"><i class="glyphicon glyphicon-pencil"> </i>修改</a>
+							<?php if($role->getRoleId() != 1) {?>
 							<a name="privilege" data-link="<?php echo URL::site('role/privilege?role_id='. $role->getRoleId());?>"><i class="glyphicon glyphicon-check"> </i>权限</a>
+							<?php }?>
 						</td>
 					</tr>
 				<?php }} ?>

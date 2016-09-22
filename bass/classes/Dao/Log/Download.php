@@ -1,19 +1,19 @@
 <?php
 /**
- * 抓取视频日志 dao
+ * 视频下载日志 dao
  * @author: phachon@163.com
  * Time: 2016-08-16 12:06
  */
-class Dao_Log_Video extends Dao {
+class Dao_Log_Download extends Dao {
 
 	protected $_db = 'grab';
 
-	protected $_tableName = 'log_video';
+	protected $_tableName = 'log_download';
 
-	protected $_primaryKey = 'log_video_id';
+	protected $_primaryKey = 'log_download_id';
 
 	/**
-	 * 根据关键字获取网站数量
+	 * 根据关键字获取日志数量
 	 * @param string $keywords
 	 * @return array
 	 */
@@ -29,7 +29,7 @@ class Dao_Log_Video extends Dao {
 	}
 
 	/**
-	 * 根据关键字分页获取网站
+	 * 根据关键字分页获取日志
 	 * @param string $keywords
 	 * @param integer $offset
 	 * @param integer $number
@@ -50,12 +50,12 @@ class Dao_Log_Video extends Dao {
 			$select->limit($number);
 		}
 
-		return $select->as_object('Model_Log_Video')
+		return $select->as_object('Model_Log_Download')
 			->execute($this->_db);
 	}
 
 	/**
-	 * 获取网站总数
+	 * 获取日志总数
 	 * @return array
 	 */
 	public function countLogs() {
@@ -66,7 +66,7 @@ class Dao_Log_Video extends Dao {
 	}
 
 	/**
-	 * 分页获取网站信息
+	 * 分页获取下载日志信息
 	 * @param integer $offset
 	 * @param integer $number
 	 * @return array
@@ -83,17 +83,17 @@ class Dao_Log_Video extends Dao {
 			$select->limit($number);
 		}
 
-		return $select->as_object('Model_Log_Video')
+		return $select->as_object('Model_Log_Download')
 			->execute($this->_db);
 	}
 
 	/**
-	 * 获取所有的网站
+	 * 获取所有的下载日志
 	 */
 	public function getLogs() {
 		return DB::select('*')
 			->from($this->_tableName)
-			->as_object('Model_Log_Video')
+			->as_object('Model_Log_Download')
 			->execute();
 	}
 
@@ -107,23 +107,8 @@ class Dao_Log_Video extends Dao {
 			->from($this->_tableName)
 			->where('url_id', '=', $urlId)
 			->order_by($this->_primaryKey, 'DESC');
-		return $select->as_object('Model_Log_Video')
+		return $select->as_object('Model_Log_Download')
 			->execute($this->_db);
 	}
-
-	/**
-	 * 根据 grab_video_id 来查找日志
-	 * @param integer $grabVideoId
-	 * @return array
-	 */
-	public function getLogsByGrabVideoId($grabVideoId) {
-		$select = DB::select('*')
-			->from($this->_tableName)
-			->where('grab_video_id', '=', $grabVideoId)
-			->order_by($this->_primaryKey, 'DESC');
-		return $select->as_object('Model_Log_Video')
-			->execute($this->_db);
-	}
-
 
 }

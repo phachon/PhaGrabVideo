@@ -121,7 +121,7 @@ class Controller_Profile extends Controller_Template {
 			$errors[] = '两次输入的密码不一致';
 		}
 		if($errors) {
-			return $this->error(json_encode(' ', $errors));
+			return $this->error(implode(' ',$errors));
 		}
 		try {
 			$result = Business::factory('Account')->updatePasswordByAccountId($newPassword, $accountId);
