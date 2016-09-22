@@ -27,6 +27,12 @@ class Controller_Base extends Controller {
 	protected $_autoResponse = TRUE;
 
 	/**
+	 * is validate token
+	 * @var bool
+	 */
+	protected $_validateToken = TRUE;
+
+	/**
 	 * auto return json code
 	 * @var int
 	 */
@@ -85,37 +91,39 @@ class Controller_Base extends Controller {
 	 */
 	public function before() {
 
-		$token = Arr::get($_REQUEST, 'token', '');
-		$name = Arr::get($_REQUEST, 'name', '');
+		if($this->_validateToken) {
+			$token = Arr::get($_REQUEST, 'token', '');
+			$name = Arr::get($_REQUEST, 'name', '');
 
-		if(!$token) {
-			header('HTTP/1.1 403 Forbidden');
-			exit('Your access to token is not found');
-		}
-		if(!$name) {
-			header('HTTP/1.1 403 Forbidden');
-			exit('Your access to name is not found');
-		}
+			if(!$token) {
+				header('HTTP/1.1 403 Forbidden');
+				exit('Your access to token is not found');
+			}
+			if(!$name) {
+				header('HTTP/1.1 403 Forbidden');
+				exit('Your access to name is not found');
+			}
 
-		$accounts = Business::factory('Account')->getAccountByName($name);
+			$accounts = Business::factory('Account')->getAccountByName($name);
 
-		if($accounts->count() == 0) {
-			header('HTTP/1.1 403 Forbidden');
-			exit('Your access to name is not valid');
-		}
-		if($accounts->current()->getStatus() != 0) {
-			header('HTTP/1.1 403 Forbidden');
-			exit('Your access to name is blocked');
-		}
-		if($token != $accounts->current()->getToken()) {
-			header('HTTP/1.1 403 Forbidden');
-			exit('Your access to token is not valid');
-		}
+			if($accounts->count() == 0) {
+				header('HTTP/1.1 403 Forbidden');
+				exit('Your access to name is not valid');
+			}
+			if($accounts->current()->getStatus() != 0) {
+				header('HTTP/1.1 403 Forbidden');
+				exit('Your access to name is blocked');
+			}
+			if($token != $accounts->current()->getToken()) {
+				header('HTTP/1.1 403 Forbidden');
+				exit('Your access to token is not valid');
+			}
 
-		$this->_token = $token;
-		$this->_name = $name;
-		$this->_accountId = $accounts->current()->getAccountId();
-
+			$this->_token = $token;
+			$this->_name = $name;
+			$this->_accountId = $accounts->current()->getAccountId();
+		}
+		
 		$this->_dataType = Arr::get($_REQUEST, 'data_type', 'json');
 		$this->_jsonp = Arr::get($_REQUEST, 'data_type', 'jsonp');
 

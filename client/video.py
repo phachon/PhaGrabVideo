@@ -1,13 +1,14 @@
-import json
-import requests
+import configparser
 
-video = {
-	'url_id': 1,
-	'title': 'test',
-	'url': 'http://test.com',
-	'file_name': 'grab-video-1',
-}
 
-result = requests.post('http://grab.githubs.com/api/video/create', data=video)
-response = json.loads(result.text)
-print(response)
+# 写入配置文件
+config = open('config.ini', 'w')
+conf = configparser.ConfigParser()
+
+conf.add_section('download')
+conf.set('download', 'host', 'http://grab.githubs.com/')
+conf.set('download', 'port', '80')
+conf.set('download', 'name', 'panchao')
+conf.set('download', 'token', 'lahdkjasdkjasnd')
+conf.write(config)
+config.close()

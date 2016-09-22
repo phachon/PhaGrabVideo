@@ -5,7 +5,7 @@ import requests
 import json
 
 
-class GrabLog:
+class DownloadLog:
 	""" 抓取日志 """
 
 	# 日志级别
@@ -24,8 +24,6 @@ class GrabLog:
 			'message': self.info.get('message', ''),
 			'extra': self.info.get('extra', ''),
 			'url_id': self.info.get('url_id', 0),
-			'grab_video_id': self.info.get('grab_video_id', 0),
-			'upload_video_id': self.info.get('upload_video_id', 0)
 		}
 
 		try:
