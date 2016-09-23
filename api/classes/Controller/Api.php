@@ -30,8 +30,7 @@ class Controller_Api extends Controller_Base {
 		if($accounts->count() == 0) {
 			return $this->error('name is not validate');
 		}
-
-		if($token != md5($name . $accounts->current()->getPassword()) ) {
+		if($token != md5($name . ':'.$accounts->current()->getPassword()) ) {
 			return $this->error('token is not validate');
 		}
 
