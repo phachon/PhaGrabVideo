@@ -1,12 +1,13 @@
 """
 写入日志
 """
-import requests
 import json
+import requests
+import configparser
 
 
 class DownloadLog:
-	""" 抓取日志 """
+	""" 下载日志 """
 
 	# 日志级别
 	level_info = 0
@@ -19,7 +20,18 @@ class DownloadLog:
 
 	def write(self):
 
+		config = configparser.ConfigParser()
+		config.read('config.ini')
+		host = config.get('download', 'host')
+		port = config.get('download', 'port')
+		token = config.get('download', 'token')
+		name = config.get('download', 'name')
+
+		url = ''.join(['http://', host, ':', port, '/api/log/download'])
+
 		values = {
+			'token': token,
+			'name': name,
 			'level': self.info.get('level', 0),
 			'message': self.info.get('message', ''),
 			'extra': self.info.get('extra', ''),
@@ -27,21 +39,10 @@ class DownloadLog:
 		}
 
 		try:
-			result = requests.post("http://grab.githubs.com/api/log/grab", data=values)
+			result = requests.post(url, data=values)
 			response = json.loads(result.text)
 			if response['code'] == 0:
-				exit('request log api failed')
+				print('request log api failed')
+				exit(response['message'])
 		except Exception as e:
 			print(e)
-
-# if __name__ == '__main__':
-# 	info = {
-# 		# 'level': 'hj',
-# 		'message': 'python测试',
-# 		'extra': 'adsa',
-# 		'url_id': '1',
-# 		'grab_video_id': '0',
-# 		'upload_video_id': '0',
-# 	}
-# 	GrabLog(info).write()
-

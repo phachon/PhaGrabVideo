@@ -19,15 +19,15 @@
             foreach($logs as $log) {
         ?>
         <tr class="gradeX">
-          <td class="center"><?php echo $log->getLogVideoId(); ?></td>
+          <td class="center"><?php echo $log->getLogDownloadId(); ?></td>
           <td class="center"><?php echo $log->getLevel(); ?></td>
           <td>
-            <a data-toggle="collapse" data-target="#<?php echo $log->getLogVideoId();?>"><?php echo $log->getMessage(); ?></a>
+            <a data-toggle="collapse" data-target="#<?php echo $log->getLogDownloadId();?>"><?php echo $log->getMessage(); ?></a>
           </td>
           <td class="center"><?php echo $log->getCreateTime('Y-m-d H:i'); ?></td>
         </tr>
-        <tr class="collapse" id="<?php echo $log->getLogVideoId();?>">
-          <td colspan="6">
+        <tr class="collapse" id="<?php echo $log->getLogDownloadId();?>">
+          <td colspan="4">
             <div class="well well-sm" style="margin-bottom:0">
               <label>
                 <?php

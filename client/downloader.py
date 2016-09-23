@@ -1,7 +1,3 @@
-"""
-下载器
-@author phachon@163.com
-"""
 import os
 import sys
 import json
@@ -13,7 +9,6 @@ from you_get.common import main
 
 
 class Downloader:
-
 	""" 根据 you-get 下载视频 """
 
 	def __init__(self, url):
@@ -45,12 +40,6 @@ class Downloader:
 	def _download(self, fileName, fileDir):
 		""" 开始下载视频"""
 
-		#sys.argv = ['/usr/local/python3/bin/you-get', '--output-filename', '%s.flv' % fileName, '--output-dir', fileDir, self.url['url']]
-		sys.argv = ['/usr/local/python3/bin/you-get', '--debug', self.url['url']]
-		try:
-			main()
-		except Exception as e:
-			raise e
 
 	def execute(self):
 

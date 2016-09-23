@@ -33,7 +33,7 @@ return array(
 		'type' => 'database',
 		'parameters' => array (
 			'group' 	 => 'grab',
-			'table'      => 'grab_log_download',
+			'table'      => 'log_download',
 			'slice'		 => '',
 		),
 		'columns' => array(
