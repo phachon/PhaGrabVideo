@@ -1,7 +1,7 @@
 <?php
 /**
  * 写日志相关接口
- * @author: panchao
+ * @author: phachon@163.com
  * Time: 10:49
  */
 class Controller_Log extends Controller_Base {

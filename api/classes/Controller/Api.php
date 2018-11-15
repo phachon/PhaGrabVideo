@@ -1,7 +1,7 @@
 <?php
 /**
  * api
- * @author: panchao
+ * @author: phachon@163.com
  * Time: 12:16
  */
 class Controller_Api extends Controller_Base {

@@ -52,7 +52,7 @@ class Download(object):
 				date = datetime.datetime.now()
 				time = datetime.datetime.strftime(date, 'Y-m-d-H-i-s')
 				filename = ''.join([time, '-', self.url_id])
-				
+
 				# 开始下载
 				cmd = ''.join(['you-get ', ' -o ', self.dir, ' -O ', filename, url_address])
 
